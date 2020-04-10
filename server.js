@@ -29,7 +29,7 @@ const sendMessage = (bodyResponse) => {
             replyToken: replyToken,
             messages: [{
                 type: 'text',
-                text: 'test'
+                text: messageStr
             }]
         })
     }).then(() => {
@@ -45,7 +45,7 @@ app.post('/webhookLineBot', (req, res) => {
         return res.status(400).send(ret)
     }
     sendMessage(req.body)
-    res.status(200).send({ message: 'Done' })
+    res.status(200)
 })
 
 app.get('/', (req, res) => {
