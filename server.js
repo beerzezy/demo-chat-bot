@@ -16,7 +16,7 @@ const LINE_HEADER = {
     'Authorization': `Bearer ${CAToken}`
 }
 
-const sendMessage = (bodyResponse) => {
+const sendMessage = (bodyResponse, res) => {
     //let userId = bodyResponse.events[0].source.userId
     let replyToken = bodyResponse.events[0].replyToken
     //let message = bodyResponse.events[0].message.text
