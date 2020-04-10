@@ -29,9 +29,13 @@ const sendMessage = (bodyResponse) => {
             replyToken: replyToken,
             messages: [{
                 type: 'text',
-                text: messageStr
+                text: 'test'
             }]
         })
+    }).then(() => {
+        return res.status(200).send('Done')
+    }).catch((error) => {
+        return Promise.reject(error)
     })
 }
 
