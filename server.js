@@ -8,9 +8,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/webhook', (req, res) => {
-    req.on('data => ', chunk => {
-        console.log(`Data chunk available: ${chunk}`)
-    })
+    console.log(req)
     res.status(200).send({ status: '200 OK' })
 })
 
