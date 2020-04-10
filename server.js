@@ -15,15 +15,11 @@ const LINE_HEADER = {
     'Authorization': `Bearer ${CAToken}`
 }
 
-app.get('/', (req, res) => {
-    //res.json({ message: 'BEER!' })
-    res.send('Welcome to Chat Bot API...')
-})
-
 // const sendMessage = (bodyResponse) => {
 //     let userId = bodyResponse.events[0].source.userId
 //     let replyToken = bodyResponse.events[0].replyToken
-//     let message = bodyResponse.events[0].message.text
+//     //let message = bodyResponse.events[0].message.text
+//     let messageStr = JSON.stringify(bodyResponse);
 
 //     return request.post({
 //         uri: `${LINE_MESSAGING_API}/reply`,
@@ -32,27 +28,26 @@ app.get('/', (req, res) => {
 //             replyToken: replyToken,
 //             messages: [{
 //                 type: 'text',
-//                 text: userId
+//                 text: messageStr
 //             }]
 //         })
 //     });
 // }
 
-app.post('/webhook', (req, res) => {
-    const text = req
-
-
-    // if (text !== undefined && text.trim() !== ``) {
-    //     const ret = { message: 'Text not found' };
-    //     return res.status(400).send(ret);
+app.post('/webhookLineBot', (req, res) => {
+    // if (req.body.events[0].message.type !== undefined) {
+    //     const ret = { message: 'Text not found' }
+    //     return res.status(400).send(ret)
     // }
-
     // sendMessage(req.body)
     // res.status(200).send({ message: 'Done' })
-    console.log(req)
-    res.status(200)
+    console.log(JSON.stringify(req.body))
 })
 
+app.get('/', (req, res) => {
+    //res.json({ message: 'H! Chat Bot' })
+    res.send('Welcome to Chat Bot API...')
+})
 app.listen(port, () => {
     console.log(`Server is running at port: ${port}`);
 })
