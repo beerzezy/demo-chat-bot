@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 // }
 
 app.post('/webhook', (req, res) => {
-    const text = req.query
+    const text = req
 
 
     // if (text !== undefined && text.trim() !== ``) {
@@ -49,7 +49,7 @@ app.post('/webhook', (req, res) => {
 
     // sendMessage(req.body)
     // res.status(200).send({ message: 'Done' })
-    console.log(text)
+    console.log(req)
     res.status(200)
 })
 
