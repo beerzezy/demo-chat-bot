@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 3000
 
+app.use(cors({ origin: true }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -18,13 +20,38 @@ app.get('/', (req, res) => {
     res.send('Welcome to Chat Bot API...')
 })
 
+// const sendMessage = (bodyResponse) => {
+//     let userId = bodyResponse.events[0].source.userId
+//     let replyToken = bodyResponse.events[0].replyToken
+//     let message = bodyResponse.events[0].message.text
+
+//     return request.post({
+//         uri: `${LINE_MESSAGING_API}/reply`,
+//         headers: LINE_HEADER,
+//         body: JSON.stringify({
+//             replyToken: replyToken,
+//             messages: [{
+//                 type: 'text',
+//                 text: userId
+//             }]
+//         })
+//     });
+// }
+
 app.post('/webhook', (req, res) => {
-    console.log('req body : ', req.body)
-    console.log('req events : ', req.body.events[0])
-    console.log('source : ', req.body.events[0].source)
+    const text = req.query
+
+
+    // if (text !== undefined && text.trim() !== ``) {
+    //     const ret = { message: 'Text not found' };
+    //     return res.status(400).send(ret);
+    // }
+
+    // sendMessage(req.body)
+    // res.status(200).send({ message: 'Done' })
+    console.log(text)
     res.status(200)
 })
-
 
 app.listen(port, () => {
     console.log(`Server is running at port: ${port}`);
