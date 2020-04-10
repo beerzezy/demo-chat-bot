@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/webhook', (req, res) => {
-    console.log(req.body)
+    console.log(req)
     res.status(200).send({ status: '200 OK' })
 })
 
