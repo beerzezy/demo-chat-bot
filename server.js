@@ -15,33 +15,32 @@ const LINE_HEADER = {
     'Authorization': `Bearer ${CAToken}`
 }
 
-// const sendMessage = (bodyResponse) => {
-//     let userId = bodyResponse.events[0].source.userId
-//     let replyToken = bodyResponse.events[0].replyToken
-//     //let message = bodyResponse.events[0].message.text
-//     let messageStr = JSON.stringify(bodyResponse);
+const sendMessage = (bodyResponse) => {
+    //let userId = bodyResponse.events[0].source.userId
+    let replyToken = bodyResponse.events[0].replyToken
+    //let message = bodyResponse.events[0].message.text
+    let messageStr = JSON.stringify(bodyResponse)
 
-//     return request.post({
-//         uri: `${LINE_MESSAGING_API}/reply`,
-//         headers: LINE_HEADER,
-//         body: JSON.stringify({
-//             replyToken: replyToken,
-//             messages: [{
-//                 type: 'text',
-//                 text: messageStr
-//             }]
-//         })
-//     });
-// }
+    return request.post({
+        uri: `${LINE_MESSAGING_API}/reply`,
+        headers: LINE_HEADER,
+        body: JSON.stringify({
+            replyToken: replyToken,
+            messages: [{
+                type: 'text',
+                text: messageStr
+            }]
+        })
+    })
+}
 
 app.post('/webhookLineBot', (req, res) => {
-    // if (req.body.events[0].message.type !== undefined) {
-    //     const ret = { message: 'Text not found' }
-    //     return res.status(400).send(ret)
-    // }
-    // sendMessage(req.body)
-    // res.status(200).send({ message: 'Done' })
-    console.log(JSON.stringify(req.body))
+    if (req.body.events[0].message.type !== undefined) {
+        const ret = { message: 'Text not found' }
+        return res.status(400).send(ret)
+    }
+    sendMessage(req.body)
+    res.status(200).send({ message: 'Done' })
 })
 
 app.get('/', (req, res) => {
