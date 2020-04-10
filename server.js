@@ -45,7 +45,7 @@ app.post('/webhookLineBot', (req, res) => {
     //     return res.status(400).send(ret)
     // }
     //sendMessage(req.body, res)
-    console.log(req.body)
+    console.log(req.body.events[0].message)
     res.status(200)
 })
 
