@@ -40,7 +40,7 @@ const sendMessage = (bodyResponse) => {
 }
 
 app.post('/webhookLineBot', (req, res) => {
-    if (req.body.events[0].message.type !== undefined) {
+    if (req.body.events[0].message.type !== 'text') {
         const ret = { message: 'Text not found' }
         return res.status(400).send(ret)
     }
