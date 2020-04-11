@@ -53,6 +53,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to Chat Bot API...')
 })
 app.listen(port, () => {
-    console.log(`Server is running at port: ${port}`);
+    console.log(`Server is running at port :: ${port}`);
 })
 
